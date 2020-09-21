@@ -1,0 +1,26 @@
+{
+  "name": "Employee-Tracker-CLI",
+  "version": "1.0.0",
+  "description": "This application is a employee management system that uses a command line interface (CLI). View, add, and update employee information with this intuitively simple client.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfrausto/Employee-Tracker-CLI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfrausto/Employee-Tracker-CLI/issues"
+  },
+  "homepage": "https://github.com/jfrausto/Employee-Tracker-CLI#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
