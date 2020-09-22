@@ -26,3 +26,4 @@ function afterConnection() {
     console.log(res);
     connection.end();
   });
+}
