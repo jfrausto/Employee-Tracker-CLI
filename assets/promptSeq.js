@@ -71,8 +71,16 @@ module.exports = function (connection) {
   };
 
   const viewAllEmployees = function () {
-    const query = "SELECT * FROM employee";
+    const query = `SELECT e1.id, e1.first_name, e1.last_name, title, name AS department, 
+                          salary, CONCAT(e2.first_name, " ", e2.last_name) AS manager
+                    FROM employee e1
+                    INNER JOIN role ON e1.role_id =  role.id
+                    INNER JOIN department ON department_id = department.id
+                    LEFT JOIN employee e2 ON e2.id = e1.manager_id
+                    ORDER BY e1.id ASC
+                    `;
     connection.query(query, function (err, res) {
+      if (err) throw err;
       console.log("\n");
       console.table(res);
       start();
