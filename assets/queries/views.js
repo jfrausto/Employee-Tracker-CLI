@@ -12,6 +12,7 @@ module.exports = function (connection, viewType) {
         if (err) throw err;
         console.log(" ");
         console.table(res);
+        // return to prompt sequence
         require("../promptSeq")(connection);
       });
       break;
@@ -26,6 +27,7 @@ module.exports = function (connection, viewType) {
         if (err) throw err;
         console.log(" ");
         console.table(res);
+        // return to prompt sequence
         require("../promptSeq")(connection);
       });
       break;
@@ -42,10 +44,9 @@ module.exports = function (connection, viewType) {
         if (err) throw err;
         console.log(" ");
         console.table(res);
+        // return to prompt sequence
         require("../promptSeq")(connection);
       });
       break;
   }
-  // console.log(viewType);
-  // require("../promptSeq")(connection);
 };
