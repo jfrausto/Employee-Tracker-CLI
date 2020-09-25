@@ -27,7 +27,13 @@ connection.connect(function (err) {
   // program flow gets sent to the promptSequence file;
   // mysql connection instance is passed in
   require("./assets/promptSeq")(connection);
+
+  // ! DOES PROGRAM FLOW RETURN HERE?
+  // ! DOES THIS BEHAVE LINEARLY?
   //  this behaves like afterConnection() would
+
+  // console.log("lmao oh");
+  // connection.end();
 });
 
 // function afterConnection() {

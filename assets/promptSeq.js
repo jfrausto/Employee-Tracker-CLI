@@ -1,12 +1,12 @@
 // const mysql = require("mysql");
 const inq = require("inquirer");
 const cTable = require("console.table");
-const Department = require("./classes/Department");
-const Role = require("./classes/Role");
-const Employee = require("./classes/Employee");
+// ? const Department = require("./classes/Department");
+// ? const Role = require("./classes/Role");
+// ? const Employee = require("./classes/Employee");
 
 // query types
-// const selectView = require("./queries/view");
+// ! const selectView = require("./queries/view");
 
 // this export function is called once require statement is made
 module.exports = function (connection) {
@@ -29,25 +29,26 @@ module.exports = function (connection) {
           "view all roles",
           "view all departments",
           "add role",
+          "add department",
           "remove role",
           "--- EXIT ---",
         ],
       })
       .then(function (answer) {
         switch (answer.promptStart) {
-          case "view all employees":
-            viewAllEmployees();
-            // console.log("lmao!");
-            // connection.end();
-            // connection = selectView.allEmployees(connection);
-            // start();
-            break;
-          case "view all employees by department":
-            // TODO: viewEmployeesDepartment();
-            break;
-          case "view all employees by manager":
-            // TODO: viewEmployeesManagers();
-            break;
+          // case "view all employees":
+          //   viewAllEmployees();
+          //   // console.log("lmao!");
+          //   // connection.end();
+          //   // connection = selectView.allEmployees(connection);
+          //   // start();
+          //   break;
+          // case "view all employees by department":
+          //   // TODO: viewEmployeesDepartment();
+          //   break;
+          // case "view all employees by manager":
+          //   // TODO: viewEmployeesManagers();
+          //   break;
           case "add employee":
             // TODO: addEmployee();
             break;
@@ -60,17 +61,25 @@ module.exports = function (connection) {
           case "update employee manager":
             // TODO: managerUpdate();
             break;
-          case "view all roles":
-            viewRoles();
-            break;
+          // case "view all roles":
+          //   viewRoles();
+          //   break;
           case "add role":
-            // TODO: addRole();
+            addRole();
             break;
           case "remove role":
             // TODO: removeRole();
             break;
+          case "add department":
+            addDepartment();
+            break;
           case "view all departments":
-            viewDepartments();
+          case "view all roles":
+          case "view all employees":
+            // viewDepartments();
+            console.log("Im about to be sent to views!!!!!!!!!!!!!!!!");
+            require("./queries/views")(connection, answer.promptStart);
+            // ! THE CONNECTION WAS SENT!!
             break;
           case "--- EXIT ---":
             connection.end();
@@ -124,9 +133,87 @@ module.exports = function (connection) {
     });
   };
 
+  const addDepartment = function () {
+    inq
+      .prompt({
+        name: "depName",
+        type: "input",
+        message: "What is the name of the new department?",
+      })
+      .then(function (answer) {
+        // const newDep = new Department(answer.depName);
+        // console.log(" *** created a new department!");
+        // console.log(newDep.d_name);
+
+        const query = `INSERT INTO department(name) VALUES (?)`;
+        connection.query(query, [answer.depName], function (err, res) {
+          if (err) throw err;
+          console.log(" ");
+          console.log(` *** created new department ${answer.depName}!`);
+          console.log(" ");
+          start();
+        });
+      });
+  };
+
+  const addRole = function () {
+    inq
+      .prompt([
+        {
+          name: "title",
+          type: "input",
+          message: "What is the title of the new role?",
+        },
+        {
+          name: "salary",
+          type: "input",
+          message: "What is the salary of the new role?",
+        },
+        {
+          name: "department",
+          type: "input",
+          message: "What department is this role best suited?",
+        },
+      ])
+      .then(function (answer) {
+        // const newDep = new Department(answer.depName);
+        // console.log(" *** created a new department!");
+        // console.log(newDep.d_name);
+
+        // ? could populate an array containing all objects from database
+        // ? in order to accurately assign a department id using series
+        // ? of switch statements going through array of departments.
+        const query = `INSERT INTO role(title, salary, department_id) VALUES (?, ?, ?)`;
+        connection.query(
+          query,
+          [
+            answer.title,
+            parseFloat(answer.salary),
+            parseInt(answer.department),
+          ],
+          function (err, res) {
+            if (err) throw err;
+            console.log(" ");
+            console.log(` *** created new role ${answer.title}!`);
+            console.log(" ");
+            start();
+          }
+        );
+      });
+  };
+
+  // TODO: before you commit, make the last add query for employee work.
+  // TODO: LOOK INTO SENDING CONNECTION the same way we sent it here, with a require.
+  //
+
   // ------------------------------------------- run it
+  // console.log("OVER HEREEEeeeEE");
   start();
 
+  // return;
+  // ! CAN I RETURN TO THE SERVER FILE AFTER HERE IF I DONT END THE CONNECTION???
+  // ! NEED TO KNOW, THIS WILL LEAD TO MODULARITY OF THE TYPES OF QUERIES, for organization.
+
   // ! connection.end();
-  // ! will need to end connection in THIS file
+  // ! will need to end connection in THIS file??? MAYBE
 };
