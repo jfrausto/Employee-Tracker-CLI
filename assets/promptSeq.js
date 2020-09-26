@@ -44,7 +44,7 @@ module.exports = function (connection) {
           //   break;
           case "update employee role": // ! need this one !
           case "update employee manager":
-            // TODO:
+            require("./queries/update")(connection, answer.promptStart);
             break;
           case "remove employee":
           case "remove role":
