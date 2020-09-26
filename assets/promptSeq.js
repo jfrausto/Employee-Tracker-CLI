@@ -1,15 +1,15 @@
 // const mysql = require("mysql");
 const inq = require("inquirer");
 const cTable = require("console.table");
-// ? const Department = require("./classes/Department");
-// ? const Role = require("./classes/Role");
-// ? const Employee = require("./classes/Employee");
+// const Department = require("./classes/Department");
+// const Role = require("./classes/Role");
+// const Employee = require("./classes/Employee");
 
 // query types
 // ! const selectView = require("./queries/view");
 
 // this export function is called once require statement is made
-module.exports = function (connection) {
+module.exports = function (connection, ...objects) {
   console.log("--------------AGAIN connected as id " + connection.threadId);
 
   const start = function () {
