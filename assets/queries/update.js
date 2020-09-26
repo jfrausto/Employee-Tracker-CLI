@@ -1,5 +1,8 @@
 // todo: update a given employee's role
 const inq = require("inquirer");
+// const Department = require("./classes/Department");
+// const Role = require("./classes/Role");
+// const Employee = require("./classes/Employee");
 // ? update employee manager ?
 
 module.exports = function (connection, updateType) {

@@ -1,5 +1,9 @@
 // * this module handles the three SELECT Queries for viewing
 // * departments, roles, and employees
+// const Department = require("./classes/Department");
+// const Role = require("./classes/Role");
+// const Employee = require("./classes/Employee");
+
 module.exports = function (connection, viewType) {
   console.log("--------------REAL DEEP connected as id " + connection.threadId);
   let query = "";

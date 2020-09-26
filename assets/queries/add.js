@@ -1,4 +1,9 @@
 const inq = require("inquirer");
+// const Department = require("./classes/Department");
+// const Role = require("./classes/Role");
+// const Employee = require("./classes/Employee");
+
+// const depArray
 
 module.exports = function (connection, addType) {
   console.log("--------------REAL DEEP connected as id " + connection.threadId);
