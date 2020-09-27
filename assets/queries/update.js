@@ -1,14 +1,9 @@
-// todo: update a given employee's role
 const inq = require("inquirer");
-// const Department = require("./classes/Department");
-// const Role = require("./classes/Role");
-// const Employee = require("./classes/Employee");
-// ? update employee manager ?
-
+// this module handles update type queries
 module.exports = function (connection, updateType) {
-  console.log("--------------REAL DEEP connected as id " + connection.threadId);
-  // need inq
   let query = "";
+  // initialize query string to empty
+  // a deeper series of inquirer prompts answer cases
   switch (updateType) {
     case "update employee role":
       inq
@@ -25,23 +20,23 @@ module.exports = function (connection, updateType) {
           },
         ])
         .then(function (answer) {
-          // ? could populate an array containing all objects from database
-          // ? in order to accurately assign a department id using series
-          // ? of switch statements going through array of departments.
+          // update role query with sanitation of data
           query = `UPDATE employee SET role_id = ? WHERE id = ?`;
           connection.query(query, [answer.role, answer.id], function (
             err,
             res
           ) {
             if (err) throw err;
+            // empty console logs for neater console.table output
             console.log(" ");
             console.log(` *** updated to role ID ${answer.role}!`);
             console.log(" ");
+            // return to start of prompts!
             require("../promptSeq")(connection);
           });
         });
       break;
-
+    // go back if there is no choice matching; a default catch
     default:
       require("../promptSeq")(connection);
       break;
