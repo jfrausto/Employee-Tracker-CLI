@@ -16,13 +16,13 @@ This application is a employee management system that uses a **C**ommand **L**in
 
 ## Installation
 
-Download MySQL workbench and run `schema.sql` to create an `employee_db` database. Then, run the script `seeds.sql` to populate the database with sample data. From here you can overwrite the file to initially populate the database. You can forego creating seeds there and use the actual CLI to enter information.
+Download MySQL workbench and run `schema.sql` to create an `employee_db` database. Then, run the script `seeds.sql` to populate the database with sample data. From here you can overwrite the file to initially populate the database. You can forego creating seeds there and use the actual CLI to enter information. Make sure to create the department, role, and employee table in that order.
 
 ## Usage
 
-use the command `node server.js` to start the CLI. From there you can use the arrow keys to navigate the prompts from Inquirer to execute commands as you wish.
+use the command `npm run start` to start the CLI. From there you can use the arrow keys to navigate the prompts from Inquirer to execute commands as you wish.
 
-![Sample](/.PNG?raw=true "sample")
+![Sample promts view](/screenshots/EMS_CLI.PNG?raw=true "Some employees")
 
 ## License
 
@@ -39,4 +39,4 @@ Create a new branch and do a pull request, pending review.
 
 ## Links
 
-- [caption](link)
+- [video demo](https://drive.google.com/file/d/1D7Clw7pRry0ypBBXvzFRrc6pPTllNAy4/view)
