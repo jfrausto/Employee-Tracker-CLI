@@ -4,6 +4,8 @@
 class Department {
   constructor(d_name) {
     this.d_name = d_name;
+
+    return this;
   }
   getName() {
     return this.name;
